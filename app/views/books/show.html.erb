@@ -1,0 +1,23 @@
+<p id="notice"></p>
+
+<div class="container px-5 px-sm-0">
+  <div class="row">
+    <%= render 'list', book: @book_new,user: @user %>
+    <div class="col-md-8 offset-md-1">
+      <h1>Book detail</h1>
+      <%= link_to @book.user.name, user_path(@book.user) %>
+      <% if @book.user.image_url.present? %>
+        <%= image_tag @book.user.image_url %>
+      <% else %>
+        <%= image_tag 'no_image', size: "100×100" %>
+      <% end %>
+      <%= link_to @book.title, book_path(@book) %>
+      <%= @book.body %>
+
+      <% if @book.user == current_user %>
+        <%= link_to 'Edit', edit_book_path(@book) %>
+        <%= link_to 'Destroy', @book, method: :delete, data: { confirm: 'Are you sure?' } %>
+      <% end %>
+    </div>
+  </div>
+</div>

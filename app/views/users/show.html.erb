@@ -1,0 +1,35 @@
+<p id="notice"></p>
+
+<div class="container px-5 px-sm-0">
+  <div class="row">
+    <%= render 'books/list', book: @book,user: @user %>
+    <div class="col-md-8 offset-md-1">
+      <table>
+        <h1>Books</h1>
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Opinion</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @books.each do |book| %>
+            <tr class="users-class">
+              <td>
+                <%= link_to user_path(book.user.id) do %>
+                <% if @user.image_url.present? %>
+                  <%= image_tag @user.image_url %>
+                <% else %>
+                  <%= image_tag 'no_image', size: "100x100" %>
+                <% end %>
+                <% end %>
+              </td>
+              <td><%= link_to book.title, book_path(book) %></td>
+              <td><%= book.body %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
